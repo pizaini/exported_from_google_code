@@ -1,0 +1,57 @@
+/*
+ * pizaini.wordpress.com
+ * (c) 2012
+ */
+
+import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+
+/**
+ *
+ * @author Pizaini
+ */
+public class InciKeSenti extends JFrame{
+    private JTextField textInci, textHasil;
+    private JButton btnConvert;
+    private JPanel panel;
+    private JLabel labelInci, labelHasil;
+    
+    public InciKeSenti() throws HeadlessException {
+        initComponents();
+        textInci = new JTextField(20);
+        textHasil = new JTextField(10);
+        btnConvert = new JButton("Convert");
+        btnConvert.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Integer inci = Integer.parseInt(textInci.getText());
+                Double hasil = inci * 2.54;
+                textHasil.setText(hasil.toString());
+            }
+        });
+        
+        labelInci = new JLabel("Inci (angka): ");
+        labelHasil = new JLabel("Hasil Konversi ke Senti: ");
+       
+        panel = new JPanel();
+        panel.add(labelInci);
+        panel.add(textInci);
+        panel.add(btnConvert);
+        panel.add(labelHasil);
+        panel.add(textHasil);
+        add(panel);
+    }
+    
+    private void initComponents(){
+        setTitle("Konversi Inci ke Senti Meter");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 200);
+    }
+    
+    public static void main(String[] args){
+        new InciKeSenti().setVisible(true);
+    }
+}
